@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GANA-GOL | Quiniela Digital</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #eef2f5; margin: 0; padding: 15px; color: #222; }
+    .contenedor { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    
+    /* Encabezado Llamativo GANA-GOL */
+    .header-banner {
+      background: linear-gradient(135deg, #0f2e22 0%, #1b4332 60%, #2d6a4f 100%);
+      border-radius: 14px;
+      padding: 14px 12px;
+      margin-bottom: 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.25);
+      border: 2px solid #d4af37;
+    }
+    .logo-svg { max-width: 300px; width: 100%; height: auto; display: block; margin: auto; }
+
+    /* Bolsa Total Acumulada */
+    .bolsa-box {
+      background: linear-gradient(90deg, #fff8d6 0%, #ffea85 50%, #fff8d6 100%);
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      padding: 8px 12px;
+      text-align: center;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(212, 175, 55, 0.2);
+    }
+    .bolsa-titulo { font-size: 11px; font-weight: 800; color: #5c4300; text-transform: uppercase; letter-spacing: 1px; display: block; }
+    .bolsa-monto { font-size: 22px; font-weight: 900; color: #1b4332; }
+
+    /* Tabla de Premios 1ro, 2do y 3er Lugar */
+    .premios-grid {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .premio-card {
+      flex: 1;
+      background: #f4f9f6;
+      border: 1.5px solid #2d6a4f;
+      border-radius: 10px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .premio-card.oro { background: #fffdf0; border-color: #d4af37; }
+    .premio-lugar { font-size: 11px; font-weight: 800; color: #1b4332; display: block; margin-bottom: 3px; }
+    .premio-valor { font-size: 14px; font-weight: 900; color: #081c15; }
+
+    /* Espacio de Teléfono para Informes */
+    .informes-box {
+      background: #e8f3ee;
+      border: 1.5px dashed #2d6a4f;
+      border-radius: 10px;
+      padding: 8px 12px;
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #1b4332;
+      font-weight: 700;
+    }
+    .informes-link {
+      color: #081c15;
+      text-decoration: none;
+      background: #ffffff;
+      padding: 3px 10px;
+      border-radius: 15px;
+      border: 1px solid #2d6a4f;
+      display: inline-block;
+      margin-left: 4px;
+      font-weight: 800;
+    }
+    
+    .info-bar { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 13px; color: #444; margin-bottom: 16px; font-weight: 600; }
+    .badge-wa { background: #25D366; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 12px; box-shadow: 0 2px 5px rgba(37, 211, 102, 0.3); }
+    
+    input[type="text"] { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #d8e2dc; border-radius: 10px; box-sizing: border-box; font-size: 15px; outline: none; }
+    input[type="text"]:focus { border-color: #2d6a4f; }
+    
+    .partido { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+    .equipos { font-weight: 600; font-size: 14px; width: 58%; }
+    .opciones { display: flex; gap: 6px; }
+    .btn-op { width: 38px; height: 38px; border: 2px solid #2d6a4f; background: #fff; color: #2d6a4f; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.15s; }
+    .btn-op.activo { background: #1b4332; border-color: #1b4332; color: #fff; }
+    
+    .acciones { display: flex; gap: 8px; margin-top: 16px; }
+    .btn-accion { flex: 1; padding: 11px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
+    .btn-azar { background: #e9ecef; color: #333; }
+    .btn-limpiar { background: #ffe3e3; color: #c92a2a; }
+    
+    .resumen-actual { margin-top: 14px; text-align: center; font-size: 15px; font-weight: bold; color: #1b4332; background: #f4f9f6; padding: 10px; border-radius: 8px; }
+    .btn-agregar { width: 100%; padding: 13px; margin-top: 12px; background: #1b4332; color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: bold; cursor: pointer; }
+    
+    .carrito { margin-top: 20px; border-top: 2px dashed #ccc; padding-top: 15px; }
+    .carrito h3 { margin: 0 0 10px 0; font-size: 16px; color: #1b4332; }
+    .item-quiniela { background: #f8f9fa; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; margin-bottom: 8px; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
+    .item-info strong { color: #1b4332; display: block; margin-bottom: 3px; }
+    .btn-eliminar { background: #ff6b6b; color: #fff; border: none; border-radius: 6px; padding: 6px 10px; cursor: pointer; font-weight: bold; }
+    
+    .total-final { text-align: center; font-size: 18px; font-weight: 800; color: #1b4332; margin: 15px 0 10px 0; }
+    .btn-whatsapp { width: 100%; padding: 15px; background: #25D366; color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+    .btn-whatsapp:disabled { background: #95d5b2; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+
+<div class="contenedor">
+  <!-- LOGO GANA-GOL EN DORADO -->
+  <div class="header-banner">
+    <svg class="logo-svg" viewBox="0 0 430 115" xmlns="http://w3.org">
+      <defs>
+        <linearGradient id="oroGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#FFF3B0"/>
+          <stop offset="45%" stop-color="#FFD166"/>
+          <stop offset="100%" stop-color="#D49A00"/>
+        </linearGradient>
+        <linearGradient id="escudoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2D6A4F"/>
+          <stop offset="100%" stop-color="#081C15"/>
+        </linearGradient>
+        <filter id="sombra" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.55"/>
+        </filter>
+      </defs>
+
+      <path d="M10 38 L46 38 M3 55 L40 55 M13 72 L48 72" stroke="url(#oroGrad)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M53 15 L103 15 L103 62 C103 84 78 100 78 100 C78 100 53 84 53 62 Z" fill="url(#escudoGrad)" stroke="url(#oroGrad)" stroke-width="4" filter="url(#sombra)"/>
+      
+      <circle cx="78" cy="54" r="19" fill="#FFFFFF" stroke="#111" stroke-width="2"/>
+      <polygon points="78,43 87,50 83,60 73,60 69,50" fill="#1B4332"/>
+      <path d="M78 35 L78 43 M95 48 L87 50 M89 69 L83 60 M67 69 L73 60 M61 48 L69 50" stroke="#111" stroke-width="2"/>
+
+      <polygon points="120,22 123,29 130,29 124,34 126,41 120,36 114,41 116,34 110,29 117,29" fill="url(#oroGrad)"/>
+      <polygon points="402,22 405,29 412,29 406,34 408,41 402,36 396,41 398,34 392,29 399,29" fill="url(#oroGrad)"/>
+
+      <text x="118" y="75" font-family="'Arial Black', Impact, sans-serif" font-weight="900" font-style="italic" font-size="43" fill="url(#oroGrad)" stroke="#081C15" stroke-width="2.2" filter="url(#sombra)">GANA-GOL</text>
+      
+      <rect x="148" y="85" width="230" height="18" rx="9" fill="url(#oroGrad)"/>
+      <text x="263" y="98" font-family="Arial, sans-serif" font-weight="900" font-size="11" fill="#081C15" text-anchor="middle" letter-spacing="1.5">QUINIELA DEPORTIVA</text>
+    </svg>
+  </div>
+
+  <!-- CANTIDAD TOTAL QUE SE JUGARÁ -->
+  <div class="bolsa-box">
+    <span class="bolsa-titulo">💰 Bolsa Total en Juego 💰</span>
+    <span class="bolsa-monto" id="texto-bolsa">$1,000 MXN</span>
+  </div>
+
+  <!-- PREMIOS 1ER, 2DO Y 3ER LUGAR -->
+  <div class="premios-grid">
+    <div class="premio-card oro">
+      <span class="premio-lugar">🥇 1er Lugar</span>
+      <span class="premio-valor" id="texto-premio1">$600</span>
+    </div>
+    <div class="premio-card">
+      <span class="premio-lugar">🥈 2do Lugar</span>
+      <span class="premio-valor" id="texto-premio2">$300</span>
+    </div>
+    <div class="premio-card">
+      <span class="premio-lugar">🥉 3er Lugar</span>
+      <span class="premio-valor" id="texto-premio3">$100</span>
+    </div>
+  </div>
+
+  <!-- ESPACIO PARA TELÉFONO DE INFORMES -->
+  <div class="informes-box">
+    📞 Informes y dudas: 
+    <a class="informes-link" id="link-informes" href="tel:4421148969">442 114 8969</a>
+  </div>
+
+  <div class="info-bar">
+    <span id="subtitulo-precio">Costo: $10 MXN | Selecciona L, E o V</span>
+    <span class="badge-wa">📲 Envío WhatsApp: 442 114 8969</span>
+  </div>
+
+  <input type="text" id="nombre" placeholder="Escribe tu nombre o apodo">
+
+  <div id="lista-partidos"></div>
+
+  <div class="acciones">
+    <button class="btn-accion btn-azar" onclick="llenarAleatorio()">🎲 Aleatorio</button>
+    <button class="btn-accion btn-limpiar" onclick="limpiarTablero()">🗑️ Limpiar</button>
+  </div>
+
+  <div class="resumen-actual" id="resumen-costo">Completa todos los partidos</div>
+
+  <button class="btn-agregar" onclick="agregarQuiniela()">➕ Agregar quiniela a mi lista</button>
+
+  <div class="carrito" id="seccion-carrito" style="display: none;">
+    <h3>📋 Quinielas agregadas (<span id="contador-quinielas">0</span>)</h3>
+    <div id="lista-agregadas"></div>
+    <div class="total-final" id="gran-total">Total a pagar: $0</div>
+    <button class="btn-whatsapp" id="btn-enviar" onclick="procesarEnvio()">📲 Guardar y Enviar por WhatsApp</button>
+  </div>
+</div>
+
+<script>
+  // ==========================================
+  // CONFIGURACIÓN DE GANA-GOL (EDITA AQUÍ)
+  // ==========================================
+  const nombreDeTuQuiniela = "GANA-GOL";
+  const telefonoWhatsApp = "5214421148969"; 
+  const telefonoInformes = "442 114 8969";
+  const precioQuiniela = 10;
+  const urlGoogleSheets = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
+
