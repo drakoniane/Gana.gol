@@ -3,109 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gana.Gol - Quiniela $10</title>
+<title>Gana.Gol</title>
 <style>
-  *{box-sizing:border-box;font-family:Arial, sans-serif}
-  body{margin:0;background:#0f172a;color:#fff;padding:16px}
-  .header{text-align:center;margin-bottom:16px}
-  .header h1{margin:0;font-size:32px;color:#22c55e}
-  .header p{margin:4px 0;color:#cbd5e1}
-  .bote{background:#22c55e;color:#000;font-weight:bold;text-align:center;padding:10px;border-radius:10px;margin:12px 0}
-  input[type=text]{width:100%;padding:12px;border-radius:10px;border:none;font-size:16px;margin-bottom:12px}
-  .partido{background:#1e293b;border-radius:14px;padding:14px;margin-bottom:12px}
-  .partido-top{display:flex;justify-content:space-between;align-items:center}
-  .partido-top b{font-size:15px}
-  .partido-top span{font-size:12px;background:#334155;padding:4px 8px;border-radius:20px}
-  .equipos{font-size:18px;font-weight:bold;margin:10px 0;text-align:center}
-  .opciones{display:flex;gap:8px}
-  .opciones label{flex:1;text-align:center;background:#0f172a;border:2px solid #334155;border-radius:10px;padding:12px 0;cursor:pointer;font-weight:bold}
-  .opciones input{display:none}
-  .opciones input:checked + span{color:#22c55e}
-  .opciones label:has(input:checked){border-color:#22c55e;background:#14532d}
-  .btn{width:100%;background:#22c55e;color:#000;border:none;padding:15px;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:10px}
-  .btn2{background:#fff;margin-top:8px}
-  .lista{background:#1e293b;border-radius:14px;padding:14px;margin-top:16px}
-  .fila{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #334155;font-size:14px}
-  .small{font-size:12px;color:#94a3b8;text-align:center}
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+  *{box-sizing:border-box;font-family:'Montserrat',Arial,sans-serif}
+  body{margin:0;background:radial-gradient(1000px 500px at 50% -10%, #22c55e 0%, #0f172a 50%, #020617 100%);color:#fff;padding:14px;min-height:100vh}
+  .wrap{max-width:480px;margin:0 auto}
+  .top{text-align:center}
+  .top h1{font-size:38px;margin:10px 0 0;font-weight:900}.top h1 span{color:#22c55e}
+  .sub{font-size:14px;font-weight:800;color:#facc15}
+  .bote{margin:14px 0;background:linear-gradient(90deg,#22c55e,#facc15);color:#000;font-weight:900;text-align:center;padding:14px;border-radius:14px;font-size:16px}
+  .nombre-box{background:#fff;color:#000;border-radius:18px;padding:14px;margin:12px 0;border:3px solid #facc15}
+  .nombre-box label{display:block;font-size:14px;font-weight:900;margin-bottom:8px}
+  .nombre-box input{width:100%;padding:14px;border-radius:12px;border:2px solid #000;font-size:18px;font-weight:900;outline:none;text-transform:uppercase}
+  .card{background:#1e293b;border:1px solid #334155;border-radius:18px;padding:14px;margin-bottom:12px}
+  .head{display:flex;justify-content:space-between;font-size:12px;color:#22c55e;font-weight:800}
+  .vs{display:flex;justify-content:space-between;align-items:center;margin:12px 0;font-weight:900;font-size:14px;text-align:center}
+  .vs div{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .vs i{width:38px;height:38px;background:#ffffff12;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px}
+  .escudo{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:50%;padding:4px}
+  .opts{display:flex;gap:8px}.opts label{flex:1;background:#0b1220;border:2px solid #1e293b;border-radius:12px;padding:10px 0;text-align:center;cursor:pointer}
+  .opts input{display:none}.opts label:has(input:checked){background:#22c55e;color:#000}
+  .btn{width:100%;border:none;padding:15px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;margin-top:8px}
+  .btn-add{background:#fff;color:#000}.btn-clear{background:#ef4444;color:#fff}.btn-wsp{background:#25D366;color:#000;font-size:18px}
+  .lista-q{background:#0f172a;border:1px dashed #22c55e;border-radius:14px;padding:12px;margin-top:12px;font-size:13px;line-height:1.6}
+  .total-box{text-align:center;font-size:20px;font-weight:900;margin-top:10px;color:#facc15}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>Gana.Gol ⚽</h1>
-  <p>Quiniela Media Semana - $10 por renglón</p>
-  <p>9 partidos | Gana el que tenga más aciertos</p>
+<div class="wrap">
+  <div class="top"><h1>Gana.<span>Gol</span> ⚽</h1><div class="sub">🔥 6 PARTIDOS • $10 POR QUINIELA 🔥</div></div>
+  <div class="bote">💰 BOTE ACUMULADO: $1,000 MXN 💰</div>
+  <div class="nombre-box"><label>👤 ¿CUÁL ES TU NOMBRE?</label><input id="nombre" placeholder="ESCRIBE TU NOMBRE AQUÍ..."></div>
+  <div id="lista"></div>
+  <button class="btn btn-add" onclick="agregarQuiniela()">➕ AGREGAR ESTA QUINIELA ($10)</button>
+  <button class="btn btn-clear" onclick="limpiarTodo()">🧹 LIMPIAR TODO</button>
+  <div class="lista-q" id="misQuinielas">Aún no has agregado ninguna quiniela.</div>
+  <div class="total-box" id="total">Total a pagar: $0</div>
+  <button class="btn btn-wsp" onclick="enviarTodo()">📲 ENVIAR TODO POR WHATSAPP</button>
 </div>
-
-<div class="bote" id="bote">Bote acumulado: $0 | Jugadores: 0</div>
-
-<input type="text" id="nombre" placeholder="Escribe tu nombre o apodo... Ej: MONTERREY">
-
-<div id="partidos"></div>
-
-<button class="btn" onclick="guardar()">✅ GUARDAR MI QUINIELA</button>
-<button class="btn btn2" onclick="copiar()">📋 COPIAR Y MANDAR POR WHATSAPP</button>
-<p class="small">Tus picks se guardan en tu celular. Para la hoja general, mándame tu captura o tu texto por WhatsApp.</p>
-
-<div class="lista">
-  <b>📋 Mis picks guardados:</b>
-  <div id="misPicks">Aún no has guardado nada</div>
-</div>
-
 <script>
-const partidos = [
-  {local:"Turquía", visita:"Bélgica", dia:"Jueves 1:45 p.m."},
-  {local:"Italia", visita:"Francia", dia:"Jueves 1:45 p.m."},
-  {local:"Chequia", visita:"España", dia:"Jueves 1:45 p.m."},
-  {local:"Inglaterra", visita:"Croacia", dia:"Jueves 1:45 p.m."},
-  {local:"Países Bajos", visita:"Grecia", dia:"Viernes 1:45 p.m."},
-  {local:"Serbia", visita:"Alemania", dia:"Viernes 1:45 p.m."},
-  {local:"Argentina", visita:"Uruguay", dia:"Viernes 5:00 p.m."},
-  {local:"Colombia", visita:"Chile", dia:"Viernes 6:00 p.m."},
-  {local:"Ecuador", visita:"Costa Rica", dia:"Viernes 6:00 p.m."},
+const partidos=[
+  {l:"España", v:"Inglaterra", imgL:"https://upload.wikimedia.org/wikipedia/en/1/13/Spain_national_football_team_crest.svg", imgV:"https://upload.wikimedia.org/wikipedia/en/5/52/England_national_football_team_crest.svg"},
+  {l:"Bélgica", v:"Italia", imgL:"https://upload.wikimedia.org/wikipedia/commons/8/8e/Belgium_national_football_team_logo.svg", imgV:"https://upload.wikimedia.org/wikipedia/commons/8/83/Italy_national_football_team_logo.svg"},
+  {l:"Francia", v:"Turquía", imgL:"https://upload.wikimedia.org/wikipedia/en/8/8f/France_national_football_team_crest.svg", imgV:"https://upload.wikimedia.org/wikipedia/en/0/0f/Turkey_national_football_team_logo.svg"},
+  {l:"Croacia", v:"Rep. Checa", imgL:"https://upload.wikimedia.org/wikipedia/en/5/5d/Croatia_national_football_team_crest.svg", imgV:"https://upload.wikimedia.org/wikipedia/en/9/9e/Czech_Republic_national_football_team_logo.svg"},
+  {l:"Guadalajara", v:"Cruz Azul", imgL:"https://upload.wikimedia.org/wikipedia/commons/5/5d/C.D._Guadalajara_logo.svg", imgV:"https://upload.wikimedia.org/wikipedia/commons/4/48/Cruz_Azul_logo.svg"},
+  {l:"Querétaro", v:"Necaxa", imgL:"https://upload.wikimedia.org/wikipedia/en/6/6e/Queretaro_FC_logo.svg", imgV:"https://upload.wikimedia.org/wikipedia/commons/7/7b/Club_Necaxa_logo.svg"},
 ];
-
-const cont = document.getElementById('partidos');
+let misQuinielas=[];
+const cont=document.getElementById('lista');
 partidos.forEach((p,i)=>{
-  cont.innerHTML += `
-  <div class="partido">
-    <div class="partido-top"><b>PARTIDO ${i+1}</b><span>${p.dia}</span></div>
-    <div class="equipos">${p.local} vs ${p.visita}</div>
-    <div class="opciones">
-      <label><input type="radio" name="p${i}" value="L"><span>L<br>Local</span></label>
-      <label><input type="radio" name="p${i}" value="E"><span>E<br>Empate</span></label>
-      <label><input type="radio" name="p${i}" value="V"><span>V<br>Visita</span></label>
-    </div>
-  </div>`;
+  cont.innerHTML+=`<div class="card"><div class="head"><b>PARTIDO ${i+1}</b><span>$10</span></div><div class="vs"><div><img class="escudo" src="${p.imgL}"><span>${p.l}</span></div><i>VS</i><div><img class="escudo" src="${p.imgV}"><span>${p.v}</span></div></div><div class="opts"><label><input type="radio" name="p${i}" value="L"><b>L</b><br><small>Local</small></label><label><input type="radio" name="p${i}" value="E"><b>E</b><br><small>Empate</small></label><label><input type="radio" name="p${i}" value="V"><b>V</b><br><small>Visita</small></label></div></div>`;
 });
-
-function getPicks(){
-  let picks=[];
-  for(let i=0;i<9;i++){
-    let sel=document.querySelector(`input[name="p${i}"]:checked`);
-    picks.push(sel?sel.value:"-");
-  }
-  return picks;
-}
-
-function guardar(){
-  const nombre=document.getElementById('nombre').value.trim();
-  if(!nombre){alert('Pon tu nombre primero');return;}
-  const picks=getPicks();
-  if(picks.includes('-')){alert('Te faltan partidos por marcar');return;}
-  localStorage.setItem('ganagol_'+nombre, JSON.stringify(picks));
-  document.getElementById('misPicks').innerHTML = `<div class="fila"><b>${nombre}</b><span>${picks.join(' - ')}</span></div>`;
-  document.getElementById('bote').innerText = `¡Listo ${nombre}! Tu quiniela quedó guardada ✅`;
-  alert('Guardado: '+nombre+' - '+picks.join(' '));
-}
-
-function copiar(){
-  const nombre=document.getElementById('nombre').value.trim()||'SIN NOMBRE';
-  const picks=getPicks();
-  const texto=`Gana.Gol - ${nombre}\n`+partidos.map((p,i)=>`${i+1}. ${p.local} vs ${p.visita}: ${picks[i]}`).join('\n');
-  navigator.clipboard.writeText(texto);
-  alert('Copiado! Ahora pégalo en WhatsApp');
-}
+function leer(){let s=[];for(let i=0;i<6;i++){let x=document.querySelector(`input[name="p${i}"]:checked`);if(!x)return null;s.push(x.value);}return s;}
+function limpiarSel(){document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);}
+function vista(){const d=document.getElementById('misQuinielas');const n=document.getElementById('nombre').value.trim()||"SIN NOMBRE";if(misQuinielas.length===0){d.innerHTML="Aún no has agregado ninguna quiniela.";}else{d.innerHTML=`<b>👤 JUGADOR: ${n.toUpperCase()}</b><br>`+misQuinielas.map((q,i)=>`Quiniela ${i+1}: ${q.join(' - ')}`).join('<br>');}document.getElementById('total').innerText=`Total a pagar: $${misQuinielas.length*10}`;}
+document.getElementById('nombre').addEventListener('input',vista);
+function agregarQuiniela(){const n=document.getElementById('nombre').value.trim();if(!n){alert('¡Primero pon tu NOMBRE!');return;}const s=leer();if(!s){alert('¡Te falta marcar un partido!');return;}misQuinielas.push(s);limpiarSel();vista();}
+function limpiarTodo(){if(!confirm('¿Borrar todas?'))return;misQuinielas=[];limpiarSel();vista();}
+function enviarTodo(){const n=document.getElementById('nombre').value.trim();if(!n){alert('Pon tu nombre');return;}if(misQuinielas.length===0){alert('Agrega al menos 1 quiniela');return;}let t=`*🔥 GANA.GOL 🔥*%0A%0A*Jugador:* ${n}%0A*Quinielas:* ${misQuinielas.length}%0A*Total:* $${misQuinielas.length*10}%0A%0A`;misQuinielas.forEach((q,i)=>{t+=`*Quiniela ${i+1}:* ${q.join(' | ')}%0A`;});window.open(`https://wa.me/524421189693?text=${t}`,'_blank');}
 </script>
 </body>
 </html>
