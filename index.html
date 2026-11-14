@@ -7,33 +7,47 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
   *{box-sizing:border-box;font-family:'Montserrat',Arial,sans-serif}
-  body{margin:0;background:radial-gradient(1000px 500px at 50% -10%, #22c55e 0%, #0f172a 50%, #020617 100%);color:#fff;padding:14px;min-height:100vh}
+  body{margin:0;color:#fff;padding:14px;min-height:100vh;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 60px, transparent 60px 120px),
+  radial-gradient(800px 400px at 50% 0%, #16a34a 0%, #14532d 45%, #052e16 100%);
+  background-attachment:fixed}
   .wrap{max-width:480px;margin:0 auto}
   .top{text-align:center}
-  .top h1{font-size:38px;margin:10px 0 0;font-weight:900}.top h1 span{color:#22c55e}
-  .sub{font-size:14px;font-weight:800;color:#facc15}
-  .bote{margin:14px 0;background:linear-gradient(90deg,#22c55e,#facc15);color:#000;font-weight:900;text-align:center;padding:14px;border-radius:14px;font-size:16px}
-  .nombre-box{background:#fff;color:#000;border-radius:18px;padding:14px;margin:12px 0;border:3px solid #facc15}
+  .top h1{font-size:44px;margin:8px 0 0;font-weight:900;text-shadow:0 4px 0 #000, 0 0 20px #22c55e}
+  .top h1 span{color:#22c55e}
+  .sub{font-size:15px;font-weight:900;color:#facc15;background:#000000aa;padding:8px;border-radius:999px;border:1px solid #facc15;margin-top:8px}
+  .premios{display:flex;gap:8px;margin:14px 0}
+  .premio{flex:1;text-align:center;border-radius:16px;padding:10px 4px;border:2px solid #fff}
+  .p1{background:linear-gradient(180deg,#facc15,#a16207);color:#000;transform:scale(1.05)}
+  .p2{background:linear-gradient(180deg,#e2e8f0,#64748b);color:#000}
+  .p3{background:linear-gradient(180deg,#fb923c,#9a3412);color:#fff}
+  .premio b{font-size:22px;display:block}
+  .premio span{font-size:11px;font-weight:900}
+  .nombre-box{background:#fff;color:#000;border-radius:18px;padding:14px;margin:12px 0;border:3px solid #facc15;box-shadow:0 8px 20px #00000088}
   .nombre-box label{display:block;font-size:14px;font-weight:900;margin-bottom:8px}
   .nombre-box input{width:100%;padding:14px;border-radius:12px;border:2px solid #000;font-size:18px;font-weight:900;outline:none;text-transform:uppercase}
-  .card{background:#1e293b;border:1px solid #334155;border-radius:18px;padding:14px;margin-bottom:12px}
-  .head{display:flex;justify-content:space-between;font-size:12px;color:#22c55e;font-weight:800}
+  .card{background:#0f172acc;border:2px solid #22c55e;border-radius:18px;padding:14px;margin-bottom:12px}
+  .head{display:flex;justify-content:space-between;font-size:12px;color:#facc15;font-weight:900}
   .vs{display:flex;justify-content:space-between;align-items:center;margin:12px 0;font-weight:900;font-size:14px;text-align:center}
   .vs div{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
-  .vs i{width:38px;height:38px;background:#ffffff12;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:12px}
-  .escudo{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:50%;padding:4px}
-  .opts{display:flex;gap:8px}.opts label{flex:1;background:#0b1220;border:2px solid #1e293b;border-radius:12px;padding:10px 0;text-align:center;cursor:pointer}
-  .opts input{display:none}.opts label:has(input:checked){background:#22c55e;color:#000}
-  .btn{width:100%;border:none;padding:15px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;margin-top:8px}
+  .logo{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:50%;padding:5px;border:2px solid #facc15}
+  .vs i{width:40px;height:40px;background:#facc15;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px;font-weight:900}
+  .opts{display:flex;gap:8px}.opts label{flex:1;background:#00000099;border:2px solid #334155;border-radius:12px;padding:10px 0;text-align:center;cursor:pointer}
+  .opts input{display:none}.opts label:has(input:checked){background:#22c55e;color:#000;border-color:#fff}
+  .btn{width:100%;border:none;padding:15px;border-radius:14px;font-size:16px;font-weight:900;cursor:pointer;margin-top:8px;box-shadow:0 4px 0 #000}
   .btn-add{background:#fff;color:#000}.btn-clear{background:#ef4444;color:#fff}.btn-wsp{background:#25D366;color:#000;font-size:18px}
-  .lista-q{background:#0f172a;border:1px dashed #22c55e;border-radius:14px;padding:12px;margin-top:12px;font-size:13px;line-height:1.6}
-  .total-box{text-align:center;font-size:20px;font-weight:900;margin-top:10px;color:#facc15}
+  .lista-q{background:#000000cc;border:1px dashed #22c55e;border-radius:14px;padding:12px;margin-top:12px;font-size:13px;line-height:1.6}
+  .total-box{text-align:center;font-size:22px;font-weight:900;margin-top:10px;color:#facc15;text-shadow:0 2px 0 #000}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top"><h1>Gana.<span>Gol</span> ⚽</h1><div class="sub">🔥 6 PARTIDOS • $10 POR QUINIELA 🔥</div></div>
-  <div class="bote">💰 BOTE ACUMULADO: $1,000 MXN 💰</div>
+  <div class="premios">
+    <div class="premio p2"><span>🥈 2DO LUGAR</span><b>$0</b></div>
+    <div class="premio p1"><span>🏆 1ER LUGAR</span><b>$0</b></div>
+    <div class="premio p3"><span>🥉 3ER LUGAR</span><b>$0</b></div>
+  </div>
   <div class="nombre-box"><label>👤 ¿CUÁL ES TU NOMBRE?</label><input id="nombre" placeholder="ESCRIBE TU NOMBRE AQUÍ..."></div>
   <div id="lista"></div>
   <button class="btn btn-add" onclick="agregarQuiniela()">➕ AGREGAR ESTA QUINIELA ($10)</button>
@@ -41,20 +55,21 @@
   <div class="lista-q" id="misQuinielas">Aún no has agregado ninguna quiniela.</div>
   <div class="total-box" id="total">Total a pagar: $0</div>
   <button class="btn btn-wsp" onclick="enviarTodo()">📲 ENVIAR TODO POR WHATSAPP</button>
+  <p style="text-align:center;font-size:12px;opacity:.8">Si no abre, pícale a los 3 puntos y Abrir en Chrome / Safari</p>
 </div>
 <script>
 const partidos=[
-  {l:"España", v:"Inglaterra", imgL:"https://upload.wikimedia.org/wikipedia/en/1/13/Spain_national_football_team_crest.svg", imgV:"https://upload.wikimedia.org/wikipedia/en/5/52/England_national_football_team_crest.svg"},
-  {l:"Bélgica", v:"Italia", imgL:"https://upload.wikimedia.org/wikipedia/commons/8/8e/Belgium_national_football_team_logo.svg", imgV:"https://upload.wikimedia.org/wikipedia/commons/8/83/Italy_national_football_team_logo.svg"},
-  {l:"Francia", v:"Turquía", imgL:"https://upload.wikimedia.org/wikipedia/en/8/8f/France_national_football_team_crest.svg", imgV:"https://upload.wikimedia.org/wikipedia/en/0/0f/Turkey_national_football_team_logo.svg"},
-  {l:"Croacia", v:"Rep. Checa", imgL:"https://upload.wikimedia.org/wikipedia/en/5/5d/Croatia_national_football_team_crest.svg", imgV:"https://upload.wikimedia.org/wikipedia/en/9/9e/Czech_Republic_national_football_team_logo.svg"},
-  {l:"Guadalajara", v:"Cruz Azul", imgL:"https://upload.wikimedia.org/wikipedia/commons/5/5d/C.D._Guadalajara_logo.svg", imgV:"https://upload.wikimedia.org/wikipedia/commons/4/48/Cruz_Azul_logo.svg"},
-  {l:"Querétaro", v:"Necaxa", imgL:"https://upload.wikimedia.org/wikipedia/en/6/6e/Queretaro_FC_logo.svg", imgV:"https://upload.wikimedia.org/wikipedia/commons/7/7b/Club_Necaxa_logo.svg"},
+  {l:"España", v:"Inglaterra", imgL:"https://flagcdn.com/w160/es.png", imgV:"https://flagcdn.com/w160/gb-eng.png"},
+  {l:"Bélgica", v:"Italia", imgL:"https://flagcdn.com/w160/be.png", imgV:"https://flagcdn.com/w160/it.png"},
+  {l:"Francia", v:"Turquía", imgL:"https://flagcdn.com/w160/fr.png", imgV:"https://flagcdn.com/w160/tr.png"},
+  {l:"Croacia", v:"Rep. Checa", imgL:"https://flagcdn.com/w160/hr.png", imgV:"https://flagcdn.com/w160/cz.png"},
+  {l:"Guadalajara", v:"Cruz Azul", imgL:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/C.D._Guadalajara_logo.svg/512px-C.D._Guadalajara_logo.svg.png", imgV:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Cruz_Azul_logo.svg/512px-Cruz_Azul_logo.svg.png"},
+  {l:"Querétaro", v:"Necaxa", imgL:"https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Queretaro_FC_logo.svg/512px-Queretaro_FC_logo.svg.png", imgV:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Club_Necaxa_logo.svg/512px-Club_Necaxa_logo.svg.png"},
 ];
 let misQuinielas=[];
 const cont=document.getElementById('lista');
 partidos.forEach((p,i)=>{
-  cont.innerHTML+=`<div class="card"><div class="head"><b>PARTIDO ${i+1}</b><span>$10</span></div><div class="vs"><div><img class="escudo" src="${p.imgL}"><span>${p.l}</span></div><i>VS</i><div><img class="escudo" src="${p.imgV}"><span>${p.v}</span></div></div><div class="opts"><label><input type="radio" name="p${i}" value="L"><b>L</b><br><small>Local</small></label><label><input type="radio" name="p${i}" value="E"><b>E</b><br><small>Empate</small></label><label><input type="radio" name="p${i}" value="V"><b>V</b><br><small>Visita</small></label></div></div>`;
+  cont.innerHTML+=`<div class="card"><div class="head"><b>⚽ PARTIDO ${i+1}</b><span>QUINIELA</span></div><div class="vs"><div><img class="logo" src="${p.imgL}" onerror="this.style.display='none'"><span>${p.l}</span></div><i>VS</i><div><img class="logo" src="${p.imgV}" onerror="this.style.display='none'"><span>${p.v}</span></div></div><div class="opts"><label><input type="radio" name="p${i}" value="L"><b>L</b><br><small>Local</small></label><label><input type="radio" name="p${i}" value="E"><b>E</b><br><small>Empate</small></label><label><input type="radio" name="p${i}" value="V"><b>V</b><br><small>Visita</small></label></div></div>`;
 });
 function leer(){let s=[];for(let i=0;i<6;i++){let x=document.querySelector(`input[name="p${i}"]:checked`);if(!x)return null;s.push(x.value);}return s;}
 function limpiarSel(){document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);}
@@ -62,7 +77,15 @@ function vista(){const d=document.getElementById('misQuinielas');const n=documen
 document.getElementById('nombre').addEventListener('input',vista);
 function agregarQuiniela(){const n=document.getElementById('nombre').value.trim();if(!n){alert('¡Primero pon tu NOMBRE!');return;}const s=leer();if(!s){alert('¡Te falta marcar un partido!');return;}misQuinielas.push(s);limpiarSel();vista();}
 function limpiarTodo(){if(!confirm('¿Borrar todas?'))return;misQuinielas=[];limpiarSel();vista();}
-function enviarTodo(){const n=document.getElementById('nombre').value.trim();if(!n){alert('Pon tu nombre');return;}if(misQuinielas.length===0){alert('Agrega al menos 1 quiniela');return;}let t=`*🔥 GANA.GOL 🔥*%0A%0A*Jugador:* ${n}%0A*Quinielas:* ${misQuinielas.length}%0A*Total:* $${misQuinielas.length*10}%0A%0A`;misQuinielas.forEach((q,i)=>{t+=`*Quiniela ${i+1}:* ${q.join(' | ')}%0A`;});window.open(`https://wa.me/524421189693?text=${t}`,'_blank');}
+function enviarTodo(){
+  const n=document.getElementById('nombre').value.trim();
+  if(!n){alert('Pon tu nombre');return;}
+  if(misQuinielas.length===0){alert('Agrega al menos 1 quiniela');return;}
+  let texto=`🔥 GANA.GOL 🔥\n\nJugador: ${n}\nQuinielas: ${misQuinielas.length}\nTotal: $${misQuinielas.length*10}\n\n`;
+  misQuinielas.forEach((q,i)=>{texto+=`Quiniela ${i+1}: ${q.join(' | ')}\n`;});
+  const url=`https://wa.me/524421148969?text=${encodeURIComponent(texto)}`;
+  window.location.href=url;
+}
 </script>
 </body>
 </html>
